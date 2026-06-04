@@ -16,3 +16,13 @@ Day 2
 
 : Created and deployed Portfolio
 
+
+
+Day 3
+
+
+
+: Installed Kicad 
+
+: Installed and completed setup of PlatformIO IDE (VSCode Extension)
+
