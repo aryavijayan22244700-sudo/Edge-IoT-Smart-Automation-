@@ -43,7 +43,24 @@ This repository documents a structured, day-by-day progression through the found
 
 ---
 
-### Day 4 — Applied Machine Learning: Loan Prediction Classifier
+### Day 4 — Introduction to Machine Learning
+Attended a session covering core ML concepts relevant to intelligent IoT and edge systems:
+
+- **What is ML** — Computers learn patterns from data without being explicitly programmed with rules
+- **Three Types of ML:**
+  - 🔵 **Supervised Learning** — Labeled training data; model learns input-output mappings
+  - 🔵 **Unsupervised Learning** — Finds hidden patterns in unlabeled data
+  - 🔵 **Reinforcement Learning** — Agent learns through reward/penalty feedback loops
+- **ML Pipeline:**
+  ```
+  Collect → Clean → Train → Evaluate → Deploy
+  ```
+- **Evaluation** — Always test on unseen (held-out) test data to measure real-world performance; avoid data leakage
+- **Ethics & Responsibility** — Fairness, transparency, and responsible AI matter as much as model accuracy
+
+---
+
+### Day 5 — Applied Machine Learning: Loan Prediction Classifier
 
 Completed a hands-on workshop on Applied ML — built and trained a **Decision Tree Classifier** in Google Colab to predict loan approval outcomes.
 
@@ -169,4 +186,4 @@ This repository is actively updated as the program progresses. Each day's work i
 
 ---
 
-*Last updated: Day 4 — Applied ML: Loan Prediction Classifier*
+*Last updated: Day 5*
