@@ -155,6 +155,122 @@ plt.show()
 
 ---
 
+### Day 6 — Microcontrollers, ESP32 Architecture & Hands-on Hardware
+
+Completed the **USIZO Academy: Introduction to Microcontrollers & Embedded Systems** interactive lab, and had a first hands-on session physically connecting an **ESP32** with a sensor module and programming it via PlatformIO in VSCode.
+
+#### 🔩 Hardware Used
+| Component | Description |
+|-----------|-------------|
+| **ESP32-WROOM-32** | Dual-core 240MHz MCU with onboard Wi-Fi & Bluetooth |
+| **MPU6050** | 6-axis IMU sensor module (Accelerometer + Gyroscope) via I2C |
+| Jumper Wires (Yellow) | SDA / SCL connections between ESP32 and MPU6050 |
+| USB-C Cable | Power & serial flashing connection to laptop |
+| PlatformIO (VSCode) | Firmware development, build & upload environment |
+
+---
+
+#### 🧠 Concepts Covered
+
+**MCU vs MPU**
+- **Microcontroller (MCU)** — All-in-one single chip: CPU + RAM + Flash + I/O peripherals. Examples: ESP32, Arduino ATMega328, STM32
+- **Microprocessor (MPU)** — Raw CPU; depends on external chips for RAM and storage. Examples: Intel Core i5, Apple M-Series
+- MCUs are optimized for **low-power, low-cost, dedicated control**; MPUs for raw computational throughput
+
+| Feature | MCU | MPU |
+|---------|-----|-----|
+| Integration | Single chip (all-in-one) | System of chips |
+| Avg. Cost | $1 – $5 | $50 – $400 |
+| Power Draw | Microwatts – Milliwatts | 10W – 150W |
+| Application | Thermostat, sensor node | Laptop, desktop |
+
+---
+
+**Cores, Threads & FreeRTOS**
+- **CPU Core** — Physical engine that executes instructions; ESP32 is a **dual-core** chip (Core 0 + Core 1)
+- **Thread / Task** — A self-contained software function running concurrently (e.g. reading a sensor, running Wi-Fi, blinking an LED — all as separate tasks)
+- **FreeRTOS** — Real-Time OS kernel that guarantees critical tasks run **deterministically** with strict priority deadlines
+- **Preemption** — FreeRTOS instantly halts low-priority tasks when a high-priority task needs to execute
+
+```
+Task Priority Example:
+  Priority 3 (High)   → Task_Temp_Sensor()
+  Priority 2 (Medium) → Task_WiFi_Transmit()
+  Priority 1 (Low)    → Task_Blink_Status_LED()
+```
+
+---
+
+**GPIO — General Purpose Input/Output**
+- Physical pins on the MCU configurable at runtime via code
+- **Output mode** — Write HIGH (3.3V) or LOW (0V) to drive LEDs, relays, displays
+- **Input mode** — Read voltage levels to detect button presses or sensor states
+- **Pull-up / Pull-down resistors** — Prevent floating pin noise (an unconnected input pin acts like an antenna, randomly fluctuating between 0 and 1)
+
+```cpp
+// Configuring Pin 2
+pinMode(2, OUTPUT);
+digitalWrite(2, HIGH);  // LED ON
+
+pinMode(4, INPUT_PULLUP);
+int state = digitalRead(4);  // Read button
+```
+
+---
+
+**ADC & DAC Conversion**
+- **ADC (Analog-to-Digital)** — Converts real-world continuous voltage into binary numbers; ESP32 has **12-bit ADC** (0 to 4095 range)
+- **DAC (Digital-to-Analog)** — Converts binary code back to analog voltage output
+- **Quantization Error** — Step-like digital approximation of a smooth analog signal; higher bit depth = smaller error
+
+---
+
+**Serial Communication Protocols**
+
+| Protocol | Clock | Wires | Devices | Speed |
+|----------|-------|-------|---------|-------|
+| **UART** | Async (baud rate) | 2 (TX, RX) | Point-to-point (2) | Medium |
+| **I2C** | Sync (SCL) | 2 (SDA, SCL) | Up to 127 (addressed) | Medium |
+| **SPI** | Sync (SCK) | 4 (MOSI, MISO, SCK, CS) | Multiple (CS pins) | High |
+
+> The **MPU6050** sensor communicates over **I2C** using SDA and SCL lines — connected to the ESP32 via yellow jumper wires as seen in the session.
+
+---
+
+**ESP32-WROOM Architecture**
+- **Core**: Tensilica Xtensa Dual-Core 32-bit LX6 @ up to 240 MHz
+- **Wireless**: 2.4 GHz Wi-Fi (802.11 b/g/n) + Bluetooth v4.2 / BLE — all on-chip
+- **Memory**: 520 KB internal SRAM + 4MB/8MB external SPI Flash
+- **Peripherals**: Capacitive touch, 12-bit ADCs, 8-bit DACs, PWM, SPI, I2C, UART
+- **ULP co-processor**: Handles sensor polling during deep sleep to minimize power draw
+- **Pin Multiplexing**: Each GPIO pin supports multiple hardware functions configurable in firmware
+
+---
+
+#### ⚙️ Hands-on Activity
+- Physically connected **ESP32** to laptop via USB-C for power and serial flashing
+- Wired **MPU6050** (IMU sensor) to ESP32 using **I2C** jumper connections (SDA + SCL)
+- Opened firmware project in **PlatformIO + VSCode** — observed `setup()` and `loop()` structure in C++
+- Explored ESP32 pin multiplexing — understanding which pins support ADC, I2C, SPI, and UART simultaneously
+
+---
+
+#### 📌 Key Takeaways
+
+| Concept | Insight |
+|---------|---------|
+| MCU vs MPU | MCU = all-in-one low-power chip; MPU = high-performance multi-chip system |
+| FreeRTOS | Enables true concurrent task execution with deterministic priority scheduling |
+| GPIO | Fully software-configurable pins; always use pull-up/down to avoid floating noise |
+| ADC Resolution | 12-bit on ESP32 gives 4096 discrete steps across 0–3.3V range |
+| I2C Protocol | 2-wire addressed bus — ideal for sensors like MPU6050 on shared lines |
+| Pin Multiplexing | Each ESP32 pin can serve multiple hardware roles defined in firmware |
+| Clock Speed | Higher MHz = faster execution but higher power draw and heat |
+
+> 🔗 Session Reference: [USIZO Academy — Microcontrollers & ESP32 Introduction](https://edge-iot-intern.web.app/)
+
+---
+
 ## Tech Stack
 
 | Tool | Purpose |
@@ -163,6 +279,9 @@ plt.show()
 | KiCad | PCB / schematic design |
 | PlatformIO (VSCode) | Embedded firmware development |
 | Python / ML Frameworks | Machine learning and data processing |
+| ESP32-WROOM-32 | Target MCU for embedded programming |
+| MPU6050 | IMU sensor (I2C — accelerometer + gyroscope) |
+| FreeRTOS | Real-time OS for concurrent task scheduling on ESP32 |
 
 ---
 
@@ -186,4 +305,6 @@ This repository is actively updated as the program progresses. Each day's work i
 
 ---
 
-*Last updated: Day 5*
+*Last updated: Day 6 — Microcontrollers, ESP32 Architecture & Hands-on Hardware*
+
+
