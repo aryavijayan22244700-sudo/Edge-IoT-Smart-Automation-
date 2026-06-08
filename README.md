@@ -299,6 +299,155 @@ cd Edge-IoT-Smart-Automation
 
 ---
 
+Day 7 — Local IoT Integration & Web Server Architecture
+Configured the ESP32 to host a localized web server, enabling real-time bidirectional data flow between an embedded system and an interactive web dashboard over a shared local area network (LAN).
+
+🔩 Hardware Used
+* **ESP32-WROOM-32** (Acting as Wi-Fi Access Point/Station & Web Server)
+* **MPU6050** (6-axis IMU tracking live motion data)
+* **LED & Current-Limiting Resistor** (Target actuator for hardware control)
+* **Mobile Hotspot** (Local network gateway)
+
+🧠 Concepts Covered
+### Local Web Servers on Microcontrollers
+* **HTTP Protocol in Embedded Systems:** The ESP32 listens for incoming HTTP requests on Port 80. When a client (e.g., a smartphone browser) hits the ESP32’s local IP address, the MCU serves static HTML/CSS/JS resources directly from its internal memory.
+* **Pulse-Width Modulation (PWM):** Instead of simple binary states (ON/OFF), the ESP32 utilizes hardware PWM timers to rapidly oscillate digital output pins. By adjusting the **Duty Cycle** via an interactive browser slider, we smoothly modulated the analog brightness of a physical LED.
+
+### Asynchronous Data Flow
+* **AJAX & Fetch API:** To prevent web page reloads every time a hardware state updates, asynchronous HTTP requests handle background telemetry (MPU6050 data stream) and control endpoints dynamically.
+
+⚙️ Hands-on Activity
+* Connected the ESP32 to a local mobile hotspot network and exposed its assigned local IP address via the Serial Monitor.
+* Served a custom, responsive web dashboard containing an interactive slider element directly from the microcontroller.
+* Mapped the slider UI value to the ESP32's PWM driver to control external LED brightness in real-time without latency.
+
+📌 Key Takeaways
+| Concept | Insight |
+| :--- | :--- |
+| **Embedded Web Server** | Allows any device with a browser on the same network to interact with hardware without specialized apps. |
+| **PWM Duty Cycle** | Controls power delivery; higher duty cycle = higher average voltage = brighter LED. |
+| **Asynchronous Control** | Avoids blocking the main execution loop, keeping sensor polling active while serving web pages. |
+
+---
+
+Day 8 — Global Cloud Deployment & Industrial Automation via Relays
+Scaled the localized network prototype into a production-grade, globally accessible Internet of Things (IoT) infrastructure capable of driving high-voltage home/industrial appliances from anywhere in the world.
+
+
+
+🔩 Hardware Used
+* **ESP32-WROOM-32** (Connected to global cloud network)
+* **Relay Module** (Optocoupler-isolated mechanical switch acting as a bridge between low-power logic and high-voltage loads)
+* **Utility Light Bulb & AC Mains** (High-voltage electrical load)
+
+🧠 Concepts Covered
+### Scaling from Local to Cloud (Global Architecture)
+* **Decoupled Architecture:** Moving past network boundary limitations by hosting the web application interface on a production-ready cloud deployment platform instead of hosting it locally inside the ESP32's limited SRAM.
+* **Global Pipeline Security:** Establishing a secure, cloud-routed data pathway between the globally hosted client application and the physical ESP32 endpoint.
+
+### High-Voltage Isolation and Actuation
+* **Relay Physics:** Microcontrollers operate at fragile 3.3V/5V logic levels which would immediately destroy themselves if exposed to household AC mains (110V/230V). 
+* **Optoisolation:** The relay module isolates the sensitive ESP32 logic pins from high-voltage spikes by translating digital commands into internal infrared light signals that flip the physical mechanical switch.
+* Here is the polished and formatted content for **Day 7** and **Day 8**, structured to match the design, tone, tables, and markdown styling of your existing `README.md` file.
+
+You can copy and paste the markdown block below directly into your file right under the Day 6 section, or update your complete repository document with it.
+
+---
+
+```markdown
+Day 7 — Local IoT Integration & Web Server Architecture
+Configured the ESP32 to host a localized web server, enabling real-time bidirectional data flow between an embedded system and an interactive web dashboard over a shared local area network (LAN).
+
+🔩 Hardware Used
+* **ESP32-WROOM-32** (Acting as Wi-Fi Access Point/Station & Web Server)
+* **MPU6050** (6-axis IMU tracking live motion data)
+* **LED & Current-Limiting Resistor** (Target actuator for hardware control)
+* **Mobile Hotspot** (Local network gateway)
+
+🧠 Concepts Covered
+### Local Web Servers on Microcontrollers
+* **HTTP Protocol in Embedded Systems:** The ESP32 listens for incoming HTTP requests on Port 80. When a client (e.g., a smartphone browser) hits the ESP32’s local IP address, the MCU serves static HTML/CSS/JS resources directly from its internal memory.
+* **Pulse-Width Modulation (PWM):** Instead of simple binary states (ON/OFF), the ESP32 utilizes hardware PWM timers to rapidly oscillate digital output pins. By adjusting the **Duty Cycle** via an interactive browser slider, we smoothly modulated the analog brightness of a physical LED.
+
+### Asynchronous Data Flow
+* **AJAX & Fetch API:** To prevent web page reloads every time a hardware state updates, asynchronous HTTP requests handle background telemetry (MPU6050 data stream) and control endpoints dynamically.
+
+⚙️ Hands-on Activity
+* Connected the ESP32 to a local mobile hotspot network and exposed its assigned local IP address via the Serial Monitor.
+* Served a custom, responsive web dashboard containing an interactive slider element directly from the microcontroller.
+* Mapped the slider UI value to the ESP32's PWM driver to control external LED brightness in real-time without latency.
+
+📌 Key Takeaways
+| Concept | Insight |
+| :--- | :--- |
+| **Embedded Web Server** | Allows any device with a browser on the same network to interact with hardware without specialized apps. |
+| **PWM Duty Cycle** | Controls power delivery; higher duty cycle = higher average voltage = brighter LED. |
+| **Asynchronous Control** | Avoids blocking the main execution loop, keeping sensor polling active while serving web pages. |
+
+---
+
+Day 8 — Global Cloud Deployment & Industrial Automation via Relays
+Scaled the localized network prototype into a production-grade, globally accessible Internet of Things (IoT) infrastructure capable of driving high-voltage home/industrial appliances from anywhere in the world.
+
+
+
+🔩 Hardware Used
+* **ESP32-WROOM-32** (Connected to global cloud network)
+* **Relay Module** (Optocoupler-isolated mechanical switch acting as a bridge between low-power logic and high-voltage loads)
+* **Utility Light Bulb & AC Mains** (High-voltage electrical load)
+
+🧠 Concepts Covered
+### Scaling from Local to Cloud (Global Architecture)
+* **Decoupled Architecture:** Moving past network boundary limitations by hosting the web application interface on a production-ready cloud deployment platform instead of hosting it locally inside the ESP32's limited SRAM.
+* **Global Pipeline Security:** Establishing a secure, cloud-routed data pathway between the globally hosted client application and the physical ESP32 endpoint.
+
+### High-Voltage Isolation and Actuation
+* **Relay Physics:** Microcontrollers operate at fragile 3.3V/5V logic levels which would immediately destroy themselves if exposed to household AC mains (110V/230V). 
+* **Optoisolation:** The relay module isolates the sensitive ESP32 logic pins from high-voltage spikes by translating digital commands into internal infrared light signals that flip the physical mechanical switch.
+
+
+```
+
+```
+              [ 3.3V Low-Power Logic ]
+                        │
+                        ▼
+          ┌───────────────────────────┐
+          │   ESP32 Microcontroller   │
+          └─────────────┬─────────────┘
+                        │ (Digital Signal)
+                        ▼
+          ┌───────────────────────────┐
+          │   Optocoupler Isolation   │  ◀─── Protects MCU from high voltage
+          └─────────────┬─────────────┘
+                        │ (Internal Light Signal)
+                        ▼
+          ┌───────────────────────────┐
+          │     Mechanical Relay      │
+          └─────────────┬─────────────┘
+                        │ (Physical Switch Connection)
+                        ▼
+             [ 230V AC Mains Utility ]
+
+```
+
+```
+
+⚙️ Hands-on Activity
+* Migrated the local web dashboard code, deploying a permanent production-grade frontend website accessible globally via the public internet.
+* Integrated a Relay Module with the ESP32 development board using proper pin mapping configurations.
+* Wired a standard utility light bulb through the relay's **Normally Open (NO)** and **Common (COM)** terminals.
+* Executed end-to-end cloud actuation: Clicking a digital toggle button on the globally deployed live site instantly triggered the physical mechanical relay switch miles away.
+
+📌 Key Takeaways
+| Concept | Insight |
+| :--- | :--- |
+| **Global Deployment** | Decoupling the frontend from local hardware eliminates network boundaries, allowing true remote management. |
+| **Relay Actuation** | Allows low-power microcontrollers to safely switch heavy AC/DC industrial loads. |
+| **Asynchronous Protocols** | Managing network latencies is vital to ensure real-time responsiveness across global server routes. |
+
+```
+
 ## 📌 Notes
 
 This repository is actively updated as the program progresses. Each day's work is documented with key learnings and setup steps for reproducibility.
