@@ -405,11 +405,7 @@ Scaled the localized network prototype into a production-grade, globally accessi
 * **Relay Physics:** Microcontrollers operate at fragile 3.3V/5V logic levels which would immediately destroy themselves if exposed to household AC mains (110V/230V). 
 * **Optoisolation:** The relay module isolates the sensitive ESP32 logic pins from high-voltage spikes by translating digital commands into internal infrared light signals that flip the physical mechanical switch.
 
-
-```
-
-```
-              [ 3.3V Low-Power Logic ]
+                     [ 3.3V Low-Power Logic ]
                         │
                         ▼
           ┌───────────────────────────┐
@@ -431,9 +427,7 @@ Scaled the localized network prototype into a production-grade, globally accessi
 
 ```
 
-```
-
-⚙️ Hands-on Activity
+```⚙️ Hands-on Activity
 * Migrated the local web dashboard code, deploying a permanent production-grade frontend website accessible globally via the public internet.
 * Integrated a Relay Module with the ESP32 development board using proper pin mapping configurations.
 * Wired a standard utility light bulb through the relay's **Normally Open (NO)** and **Common (COM)** terminals.
@@ -445,6 +439,12 @@ Scaled the localized network prototype into a production-grade, globally accessi
 | **Global Deployment** | Decoupling the frontend from local hardware eliminates network boundaries, allowing true remote management. |
 | **Relay Actuation** | Allows low-power microcontrollers to safely switch heavy AC/DC industrial loads. |
 | **Asynchronous Protocols** | Managing network latencies is vital to ensure real-time responsiveness across global server routes. |
+              
+
+```
+
+```
+
 
 ```
 
@@ -454,6 +454,6 @@ This repository is actively updated as the program progresses. Each day's work i
 
 ---
 
-*Last updated: Day 6 — Microcontrollers, ESP32 Architecture & Hands-on Hardware*
+*Last updated: Day 8 — Bridging the Gap Between Hardware and the Cloud: An IoT Milestone*
 
 
